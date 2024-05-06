@@ -1,5 +1,8 @@
 # Multi-threaded Restaurant Ordering System
 
+![Assignment B Description](assets/AssignmentDescription.png)
+
+
 This project implements a multi-threaded restaurant ordering system designed to simulate the interaction between customers, chefs, and waiters in a busy restaurant environment. The system utilizes POSIX threads for concurrent execution and counting semaphores to manage synchronization and ensure efficient resource utilization.
 
 ## Features
