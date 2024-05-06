@@ -1,65 +1,68 @@
 # Multi-threaded Restaurant Ordering System
 
-This repository contains a C program that simulates a restaurant ordering system using multi-threading and semaphores for synchronization. The system includes separate threads for customers, chefs, and waiters, each interacting through shared resources with proper synchronization to simulate a real-world restaurant scenario.
+This project implements a multi-threaded restaurant ordering system designed to simulate the interaction between customers, chefs, and waiters in a busy restaurant environment. The system utilizes POSIX threads for concurrent execution and counting semaphores to manage synchronization and ensure efficient resource utilization.
 
-## Overview
+## Features
 
-The program demonstrates a basic use of threads and semaphores in a POSIX environment. It models a system where:
-- **Customers** place orders.
-- **Chefs** cook the orders.
-- **Waiters** serve the cooked orders.
+- **Thread-based Simulation**: Separate threads simulate customers placing orders, chefs preparing those orders, and waiters serving them.
+- **Resource Synchronization**: Uses counting semaphores to manage the number of active threads allowed to perform tasks simultaneously, preventing resource conflicts and ensuring system stability.
+- **Efficient Order Processing**: The implementation ensures that orders are processed in a timely and synchronized manner, closely mimicking a real restaurant's operations.
 
-Semaphores are used to manage the concurrency limits, such as the number of customers who can place orders at once, the number of chefs who can cook simultaneously, and the number of waiters who can serve.
+## Getting Started
 
-## Requirements
+### Prerequisites
 
-To run this program, you will need:
-- A GCC compiler
-- A POSIX-compliant operating system (e.g., Linux or macOS)
+This software requires a GCC compiler with support for POSIX threads. It is intended for use on Unix-like operating systems such as Linux and macOS.
 
-## Compilation
+### Building the Project
 
-Compile the program using the following GCC command:
+To compile the application, navigate to the project directory in your terminal and run:
 
-```bash
-gcc -o restaurant_system restaurant_system.c -lpthread
+```sh
+make
 ```
 
-This command compiles the `restaurant_system.c` file and links the pthread library to handle the multi-threading.
+This will create an executable named `restaurant_system`.
 
-## Running the Program
+### Running the Application
 
-After compilation, you can run the program by executing:
+Execute the program with:
 
-```bash
+```sh
 ./restaurant_system
 ```
 
-The output will display the actions taken by customers, chefs, and waiters, along with the synchronization process handled by semaphores.
+Watch the output in the terminal to see how orders are placed, prepared, and served in a synchronized manner.
 
-## Program Structure
+## Configuration
 
-- **Semaphores**:
-  - `order_place_sem`: Controls the number of customers that can place orders simultaneously.
-  - `order_cook_sem`: Limits the number of orders that can be cooked at the same time.
-  - `order_serve_sem`: Restricts the number of orders that waiters can serve at once.
+The behavior of the system can be modified by adjusting the semaphore counts and thread numbers defined in `restaurant_system.h`. These parameters control the concurrency levels for customers, chefs, and waiters.
 
-- **Mutex**:
-  - `mutex`: Ensures that access to the shared order queue is synchronized among threads.
+## Code Structure
 
-- **Threads**:
-  - Customer threads simulate order placement.
-  - Chef threads manage cooking processes.
-  - Waiter threads handle serving of orders.
+- **main.c**: Sets up the environment, initializes threads, and starts the simulation.
+- **restaurant_system.c**: Contains the logic executed by each thread type and the synchronization code.
+- **restaurant_system.h**: Defines the interfaces and shared variables for thread functions.
+- **makefile**: Provides commands for compiling and cleaning up the project files.
 
-## Customization
+## Detailed Usage
 
-You can modify the constants defined at the beginning of the `restaurant_system.c` file to change the number of threads for customers, chefs, and waiters, as well as the total number of orders allowed in the system.
+Here’s an example of what the system's output might look like:
+
+```
+Customer 1 placed an order.
+Chef 0 started cooking order for Customer 1.
+Waiter 1 served order for Customer 1.
+```
+
+This output reflects the coordinated effort between threads handling different roles within the restaurant.
+
+## Assignment Requirements
+
+This project meets the following specific requirements from the assignment:
+- **Counting Semaphores**: Used to control access to shared resources such as the ordering queue and the kitchen, ensuring that the system does not allow more concurrent actions than specified.
+- **Multi-threaded Design**: Implements a multi-threaded approach to simulate real-time interactions and processes within a restaurant.
 
 ## Contributing
 
-Contributions to the project are welcome. You can contribute by improving the synchronization mechanism, adding new features, or optimizing the existing codebase.
-
-## License
-
-This project is open-sourced under the MIT License. See the `LICENSE` file for more details.
+Contributions to this project are welcome. You can contribute by refining the synchronization logic, enhancing the simulation fidelity, or extending the system to include more complex scenarios.
