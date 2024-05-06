@@ -20,3 +20,4 @@ clean:
 	rm -f $(OBJ) restaurant_system
 	rm -f *conflict*
 	rm -rf .vscode
+	clear

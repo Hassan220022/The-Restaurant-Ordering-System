@@ -45,7 +45,7 @@ void *chef(void *param)
 	{
 		/* Lock mutex before accessing shared resource */
 		pthread_mutex_lock(&mutex);
-		if (order_count > 0)
+		if (order_count > MAX_ORDERS)
 		{
 			printf("Chef %d is cooking. Orders left: %d\n", id, order_count);
 			/* Decrement the count of orders, simulating cooking an order */
@@ -58,7 +58,7 @@ void *chef(void *param)
 			if (order_count == 0)
 			{
 				/* Set keepRunning to false when there are no more orders to process */
-				keepRunning = false;
+				keepRunning = 0;
 			}
 		}
 		else
